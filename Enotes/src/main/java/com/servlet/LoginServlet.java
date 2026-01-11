@@ -21,8 +21,8 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		
-		String email = (String) req.getAttribute("uname");
-		String pass = (String)req.getAttribute("upass");
+		String email = req.getParameter("uemail");
+		String pass = req.getParameter("upass");
 		
 		User user = new User();
 		user.setEmail(email);
@@ -30,6 +30,7 @@ public class LoginServlet extends HttpServlet {
 		
 		UserDAO dao = new UserDAO(DBConnect.getConn());
 		User us = dao.loginUser(user);
+		
 		if(us!=null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("userD", us);

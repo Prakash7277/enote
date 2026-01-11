@@ -30,6 +30,21 @@
 					%>
 
 
+					<%
+					String WithoutLogin = (String) session.getAttribute("Login-error");
+					%>
+										<div class="alert alert-danger" role="alert"><%=WithoutLogin%></div>
+					
+					<%
+					if (WithoutLogin != null) {
+					%>
+					<div class="alert alert-danger" role="alert"><%=WithoutLogin%></div>
+					<%
+					session.removeAttribute("Login-error");
+
+					}
+					%>
+
 					<div class="card-body">
 						<form action="LoginServlet" method="post">
 
