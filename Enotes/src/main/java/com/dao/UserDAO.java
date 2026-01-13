@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import com.user.User;
 
 public class UserDAO {
-	
+
 	private Connection conn;
 
 	public UserDAO(Connection conn) {
@@ -17,7 +17,7 @@ public class UserDAO {
 
 	public boolean addUser (User us) {
 		boolean f = false;
-		
+
 		try {
 			String query ="insert into users(name,email,password) values (?,?,?)";
 			PreparedStatement ps =conn.prepareStatement(query);
@@ -28,14 +28,14 @@ public class UserDAO {
 			 if(i==1) {
 				 f=true;
 			 }
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		return f;
 	}
-	
+
 	public User loginUser(User user) {
 		User us = null;
 		try {
@@ -43,9 +43,9 @@ public class UserDAO {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getPassword());
-			
+
 			ResultSet rs = ps.executeQuery();
-			
+
 			if(rs.next()) {
 				us = new User();
 				us.setId(rs.getInt("id"));
@@ -54,9 +54,9 @@ public class UserDAO {
 				us.setPassword(rs.getString("password"));
 			}
 		} catch (Exception e) {
-			
+
 		}
 		return us;
-		
+
 	}
 }

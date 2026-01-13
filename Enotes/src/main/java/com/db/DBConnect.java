@@ -7,9 +7,9 @@ public class DBConnect {
 
 	private static Connection conn;
 	public static Connection getConn() {
-		
+
 		try {
-			
+
 			if(conn==null) {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/enotes","root","");
@@ -18,7 +18,7 @@ public class DBConnect {
 		} catch (Exception e) {
 			System.out.println("ex::"+e.getMessage());
 		}
-		
+
 		return conn;
 	}
 }

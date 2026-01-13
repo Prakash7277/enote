@@ -1,9 +1,11 @@
-<%@page import="com.user.User"%>
+<%@page import="com.user.Post"%>
+<%@page import="com.db.DBConnect"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.dao.PostDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
-<%
+	
+	<%
 User user1 = (User) session.getAttribute("userD");
 
 if (user1 == null) {
@@ -13,51 +15,52 @@ if (user1 == null) {
 }
 
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Edit Page</title>
 <%@include file="all_componet/allcss.jsp"%>
 </head>
 <body>
-<%@include file="all_componet/navbar.jsp" %>
+
+<%
+Integer noteid = Integer.parseInt( request.getParameter("note_id"));
+
+PostDAO post = new PostDAO(DBConnect.getConn());
+Post p = post.getDataById(noteid);
+
+%>
+
+	<%@include file="all_componet/navbar.jsp"%>
 	<div class="container-fluid">
 
-		<h1 class="text-center">Add Your Notes</h1>
+		<h1 class="text-center">Edit Your Notes</h1>
 		<div class="container">
 
 			<div class="row">
 				<div class="col-md-12">
 
-					<form action="AddNotesServlet" method="post">
+					<form action="NoteEditServlet" method="post">
+					
+					<input type="hidden" name="note_id" value="<%=noteid %>">
+					
 						<div class="form-group">
 
-							<%
-							User us = (User) session.getAttribute("userD");
-
-							if (us != null) {
-							%>
-
-							<input type="hidden" value="<%=us.getId()%>" name="uid">
-							<%
-							}
-							%>
 							<label for="exampleInputEmail1">Enter Title</label> <input
 								type="text" name="title" class="form-control"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
-								placeholder="Enter here" required="required">
+								placeholder="Enter here" required="required" value="<%=p.getTitle()%>">
 
 						</div>
 
 						<div class="form-group">
 							<label for="exampleInputEmail1">Enter Content</label>
-							<textarea rows="9" cols="" class="form-control" name="content"
-								placeholder="Enter Your Content" required="required"></textarea>
+							<textarea rows="9" class="form-control" name="content" required="required"><%=p.getContent() %></textarea>
+
 						</div>
 						<div class="conteiner text-center">
-							<button type="submit" class="btn btn-primary">Add Notes</button>
+							<button type="submit" class="btn btn-primary">Add</button>
 						</div>
 					</form>
 

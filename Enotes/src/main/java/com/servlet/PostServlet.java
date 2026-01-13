@@ -21,16 +21,17 @@ public class PostServlet extends HttpServlet {
 		int uid = Integer.parseInt(req.getParameter("uid"));
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		
-		
+
+
 		PostDAO dao = new PostDAO(DBConnect.getConn());
-		
+
 		boolean f = dao.addNotes(title, content, uid);
 		if(f) {
 			System.out.println("Data insert Sucessfully");
+			resp.sendRedirect("showNotes.jsp");
 		}else {
 			System.out.println("Something is Wrong....");
 		}
-		
+
 	}
 }

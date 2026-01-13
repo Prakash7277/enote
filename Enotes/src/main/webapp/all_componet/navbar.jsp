@@ -11,12 +11,12 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="index.jsp"><i
+			<li class="nav-item active"><a class="nav-link" href="home.jsp"><i
 					class="fa fa-home" aria-hidden="true"></i> Home <span
 					class="sr-only">(curresnt)</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="login.jsp"><i
+			<li class="nav-item"><a class="nav-link" href="addNotes.jsp"><i
 					class="fa fa-plus" aria-hidden="true"></i> Add Notes</a></li>
-			<li class="nav-item"><a class="nav-link"><i
+			<li class="nav-item"><a class="nav-link" href="showNotes.jsp"><i
 					class="fa fa-file-text-o" aria-hidden="true"></i> Show Notes</a></li>
 		</ul>
 
@@ -26,7 +26,8 @@
 		%>
 		<a href="" class="btn btn-light my-2 my-sm-0 mr-2" data-toggle="modal"
 			data-target="#exampleModal" type="submit"><i class="fa fa-user"
-			aria-hidden="true"></i> <%=user.getName()%></a> <a href="register.jsp"
+			aria-hidden="true"></i> <%=user.getName()%></a> 
+			<a href="LogoutServlet"
 			class="btn btn-light my-2 my-sm-0" type="submit"><i
 			class="fa fa-user-plus" aria-hidden="true"></i> Logout</a>
 

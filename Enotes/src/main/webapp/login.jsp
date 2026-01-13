@@ -28,22 +28,30 @@
 					session.removeAttribute("login-failed");
 					}
 					%>
-
-
-					<%
-					String WithoutLogin = (String) session.getAttribute("Login-error");
-					%>
-										<div class="alert alert-danger" role="alert"><%=WithoutLogin%></div>
 					
 					<%
-					if (WithoutLogin != null) {
-					%>
-					<div class="alert alert-danger" role="alert"><%=WithoutLogin%></div>
-					<%
-					session.removeAttribute("Login-error");
+					 String msg = (String) session.getAttribute("loginMsg");
+				    if (msg != null) {
+				%>
+				    <div class="alert alert-danger " role="alert">
+				        <%= msg %>
+				    </div>
+				<%
+				        session.removeAttribute("loginMsg"); 
+				    }
+				%>
 
-					}
-					%>
+	<%
+		String lgMsg = (String)session.getAttribute("logout");
+		if(lgMsg!=null){
+		%>
+		  <div class="alert alert-success " role="alert">
+				        <%= lgMsg %>
+				    </div>
+		<%
+		session.removeAttribute("logout");
+		}
+	%>
 
 					<div class="card-body">
 						<form action="LoginServlet" method="post">
